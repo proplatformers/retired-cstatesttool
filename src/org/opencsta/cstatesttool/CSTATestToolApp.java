@@ -17,7 +17,7 @@ This file is part of Open CSTA.
 
 package org.opencsta.cstatesttool;
 
-import au.com.mrvoip.callcontrol.CSTAMulti;
+import org.opencsta.client.CSTAMulti;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -60,7 +60,7 @@ public class CSTATestToolApp extends SingleFrameApplication  implements CSTAAppl
     }
 
     private void startCSTA(Properties props) throws Exception{
-        csta = new CSTAMulti(props) ;
+        csta = new CSTAMulti(this,props) ;
         csta.RegisterParentApplication(this) ;
         cstaThread = new Thread(csta,"CSTA Thread") ;
         csta.run() ;
@@ -167,7 +167,7 @@ public class CSTATestToolApp extends SingleFrameApplication  implements CSTAAppl
     }
 
     public void cstaFail() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.exit(0) ;
     }
 
     private static Properties loadPropertiesFromFile(String filename){
